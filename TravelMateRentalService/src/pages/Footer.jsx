@@ -21,7 +21,7 @@ export default function Footer() {
         </p>
 
         <div className="mt-6 flex justify-center gap-4 flex-wrap">
-          <button className="bg-orange-600 text-white px-6 py-2 rounded-md font-semibold flex items-center gap-2 hover:bg-orange-500 transition">
+          <button className="bg-orange-500 text-white px-6 py-2 rounded-md font-semibold flex items-center gap-2 hover:bg-orange-600 transition">
             Book Now →
           </button>
           <button className="border border-white text-white px-6 py-2 rounded-md font-semibold hover:bg-white hover:text-teal-700 transition">

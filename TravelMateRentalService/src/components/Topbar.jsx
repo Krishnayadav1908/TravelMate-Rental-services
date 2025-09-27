@@ -27,13 +27,13 @@ function Topbar(){
 
         <div className="md:flex hidden h-14 items-center space-x-4  ">
             <ul className="flex gap-7">
-            <a href="#" className="hover:text-orange-600 py-2 font-semibold">Signin</a>
-          <a
-            href="#"
+            <Link className="hover:text-orange-600 py-2 font-semibold">Signin</Link>
+          <Link
+            to='/register'
             className="font-semibold ml-4 mr-7 px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 shadow-sm hover:shadow-md"
           >
             Register
-          </a>
+          </Link>
             </ul>
         </div>
         
@@ -54,13 +54,13 @@ function Topbar(){
             <Link to='/contact' className="hover:text-orange-600">Contact</Link>
           </nav>
           <div className="flex flex-col space-y-2">
-            <a href="#" className="hover:text-orange-600 font-semibold">Signin</a>
-            <a
-              href="#"
+            <Link className="hover:text-orange-600 font-semibold">Signin</Link>
+            <Link
+              to='/register'
               className="font-semibold px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-500 shadow-sm hover:shadow-md text-center"
             >
               Register
-            </a>
+            </Link>
           </div>
         </div>
       )}
