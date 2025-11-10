@@ -21,13 +21,13 @@ function Topbar(){
         <nav className="hidden md:flex  lg:space-x-10 md:space-x-7 font-semibold">
           <Link to='/' className="hover:text-orange-600">Home</Link>
           <Link to='/about' className="hover:text-orange-600">About</Link>
-          <Link to='/model' className="hover:text-orange-600">Vehicle Models</Link>
+          <Link to='/vehicle' className="hover:text-orange-600">Vehicle Models</Link>
           <Link to='/contact' className="hover:text-orange-600">Contact</Link>
         </nav>
 
         <div className="md:flex hidden h-14 items-center space-x-4  ">
             <ul className="flex gap-7">
-            <Link className="hover:text-orange-600 py-2 font-semibold">Signin</Link>
+            <Link to='/signin' className="hover:text-orange-600 py-2 font-semibold">Signin</Link>
           <Link
             to='/register'
             className="font-semibold ml-4 mr-7 px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 shadow-sm hover:shadow-md"

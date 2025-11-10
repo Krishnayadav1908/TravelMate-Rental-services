@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 export default function Registerr() {
   const [formData, setFormData] = useState({
@@ -218,7 +219,7 @@ export default function Registerr() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium shadow-md hover:bg-blue-700 transition duration-300"
+            className="w-full bg-blue-600 cursor-pointer text-white py-3 rounded-lg font-medium shadow-md hover:bg-blue-700 transition duration-300"
           >
             Register
           </motion.button>
@@ -226,9 +227,9 @@ export default function Registerr() {
 
         <p className="mt-6 text-center text-gray-600 text-sm">
           Already have an account?{" "}
-          <a href="#" className="text-blue-500 hover:underline font-medium">
+          <Link to="/signin" className="text-blue-500 hover:underline font-medium">
             Sign in
-          </a>
+          </Link>
         </p>
       </motion.div>
     </div>

@@ -96,7 +96,7 @@ export default function Hero() {
             </div>
           </div>
   
-          <div className="grid grid-cols-3 sm:flex sm:flex-row lg:flex-row justify-center items-center w-fit sm:gap-6 mb-4 md:mb-26 mt-0 md:mt-12 lg:ml-10 lg:mt-36 ">
+          <div className="grid grid-cols-3 sm:flex sm:flex-row lg:flex-row justify-center items-center w-fit sm:gap-6 mb-4 md:mb-26 mt-0 md:mt-12 lg:ml-10 lg:mt-36 rounded-sm">
             <img
               src="/bik.png"
               alt="car & bike image"
