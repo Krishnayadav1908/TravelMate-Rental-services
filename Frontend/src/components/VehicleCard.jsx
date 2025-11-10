@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function VehicleCard({
   image,
@@ -50,7 +51,7 @@ export default function VehicleCard({
                        group-hover:bg-green-500 group-hover:text-white   
                        hover:bg-orange-500 hover:text-white"
           >
-            Book Now
+            <Link to='/vehicle' >Book Now</Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

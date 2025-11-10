@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
     return (
       <>
@@ -26,7 +28,7 @@ export default function Hero() {
   
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button className="px-6 py-3 flex items-center gap-2 rounded-lg bg-orange-500 shadow-md shadow-orange-400 hover:shadow-lg hover:scale-105 transition text-white font-semibold cursor-pointer">
-                Book Ride
+                <Link to='/vehicle' >Book Ride</Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -43,7 +45,7 @@ export default function Hero() {
                 </svg>
               </button>
               <button className="px-6 py-3 rounded-lg bg-black shadow-md hover:scale-105 hover:bg-gray-100 hover:shadow hover:text-black text-white font-semibold transition cursor-pointer">
-                Learn More
+                <Link to='/about' >Learn More</Link>
               </button>
             </div>
   

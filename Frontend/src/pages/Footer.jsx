@@ -22,10 +22,10 @@ export default function Footer() {
 
         <div className="mt-6 flex justify-center gap-4 flex-wrap">
           <button className="bg-orange-500 text-white px-6 py-2 rounded-md font-semibold flex items-center gap-2 hover:bg-orange-600 transition">
-            Book Now →
+            <Link to='/vehicle' >Book Now →</Link>
           </button>
           <button className="border border-white text-white px-6 py-2 rounded-md font-semibold hover:bg-white hover:text-teal-700 transition">
-            View All Vehicles
+            <Link to='/vehicle' >View All Vehicles</Link>
           </button>
         </div>
 
@@ -75,12 +75,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-orange-600 font-bold" to="/">
+                <Link className="hover:text-orange-600 font-bold" to="/vehicle">
                   Vehicle Models
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-orange-600 font-bold" href="#">
+                <Link className="hover:text-orange-600 font-bold" to='/contact'>
                   Contact
                 </Link>
               </li>

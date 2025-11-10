@@ -1,10 +1,9 @@
-// VehiclePage.jsx
 import { useState } from "react";
-import VehicleCard from "../components/VehicleCard"; // optional use
+import VehicleCard from "../components/VehicleCard"; 
 import Footer from "./Footer";
 import Topbar from "../components/Topbar";
+import { Link } from "react-router-dom";
 
-/* Example data: categories each contain a models array */
 const CATEGORIES = [
   {
     type: "economy",
@@ -12,8 +11,8 @@ const CATEGORIES = [
     description: "Perfect for city driving and budget-conscious travelers",
     thumbnail: "/car.png",
     models: [
-      { id: "eco-1", name: "Maruti Alto", image: "/MarutiAlto.png", price: "From ₹25,000/day", features: ["Fuel Efficient", "Easy Parking"] },
-      { id: "eco-2", name: "Hyundai Santro", image: "/HyundaiSantro.png", price: "From ₹30,000/day", features: ["Compact", "AC"] },
+      { id: "eco-1", name: "Maruti Alto", image: "/MarutiAlto.png", price: "From ₹1,800/day", features: ["Fuel Efficient", "Easy Parking"] },
+      { id: "eco-2", name: "Hyundai Santro", image: "/HyundaiSantro.png", price: "From ₹2,640/day", features: ["Compact", "AC"] },
     ],
   },
   {
@@ -22,9 +21,9 @@ const CATEGORIES = [
     description: "Premium comfort and style for special occasions",
     thumbnail: "/luxury-sedan.png",
     models: [
-      { id: "lux-1", name: "BMW 5 Series", image: "/BMW5.jpg", price: "From ₹85,000/day", features: ["Leather Seats", "Premium Sound"] },
-      { id: "lux-2", name: "Mercedes E-Class", image: "/MercedesE-Class.png", price: "From ₹95,000/day", features: ["Advanced Tech", "Comfort"] },
-      { id: "lux-3", name: "Audi A6", image: "/AudiA6.jpeg", price: "From ₹90,000/day", features: ["Executive", "GPS"] },
+      { id: "lux-1", name: "BMW 5 Series", image: "/BMW5.jpg", price: "From ₹12,000/day", features: ["Leather Seats", "Premium Sound"] },
+      { id: "lux-2", name: "Mercedes E-Class", image: "/MercedesE-Class.png", price: "From ₹11,000/day", features: ["Advanced Tech", "Comfort"] },
+      { id: "lux-3", name: "Audi A6", image: "/AudiA6.jpeg", price: "From ₹10,000/day", features: ["Executive", "GPS"] },
     ],
   },
   {
@@ -33,8 +32,8 @@ const CATEGORIES = [
     description: "Spacious vehicles for families and cargo needs",
     thumbnail: "/suv-truck.jpg",
     models: [
-      { id: "suv-1", name: "Hyundai Creta", image: "/HyundaiCreta.png", price: "From ₹55,000/day", features: ["7+ Seats", "4WD Available"] },
-      { id: "suv-2", name: "Mahindra Scorpio", image: "/MahindraScorpio.jpg", price: "From ₹60,000/day", features: ["Large Cargo", "Rugged"] },
+      { id: "suv-1", name: "Hyundai Creta", image: "/HyundaiCreta.png", price: "From ₹3,500/day", features: ["7+ Seats", "4WD Available"] },
+      { id: "suv-2", name: "Mahindra Scorpio", image: "/MahindraScorpio.jpg", price: "From ₹4,500/day", features: ["Large Cargo", "Rugged"] },
     ],
   },
   {
@@ -43,9 +42,9 @@ const CATEGORIES = [
     description: "Two-wheelers for daily rides and long drives",
     thumbnail: "/BajajPulsar.jpg",
     models: [
-      { id: "bike-1", name: "Honda Shine", image: "/HondaShine.png", price: "From ₹800/day", features: ["Smooth Ride", "Fuel Efficient"] },
-      { id: "bike-2", name: "Hero Passion Pro", image: "/HeroPassionPro.jpeg", price: "From ₹750/day", features: ["Stylish", "Reliable"] },
-      { id: "bike-3", name: "Bajaj Pulsar", image: "/BajajPulsar.jpg", price: "From ₹950/day", features: ["Sporty Design", "Disc Brake"] },
+      { id: "bike-1", name: "Honda Shine", image: "/HondaShine.png", price: "From ₹650/day", features: ["Smooth Ride", "Fuel Efficient"] },
+      { id: "bike-2", name: "Hero Passion Pro", image: "/HeroPassionPro.jpeg", price: "From ₹525/day", features: ["Stylish", "Reliable"] },
+      { id: "bike-3", name: "Bajaj Pulsar", image: "/BajajPulsar.jpg", price: "From ₹800/day", features: ["Sporty Design", "Disc Brake"] },
     ],
   },
   {
@@ -54,9 +53,9 @@ const CATEGORIES = [
     description: "Easy-to-ride scooters for quick city commutes",
     thumbnail: "/SuzukiAccess.png",
     models: [
-      { id: "scooty-1", name: "Honda Activa", image: "/HondaActiva.jpg", price: "From ₹600/day", features: ["Smooth Ride", "Easy Start"] },
-      { id: "scooty-2", name: "TVS Jupiter", image: "/tvs-jupiter.jpg", price: "From ₹650/day", features: ["Comfortable Seat", "Good Mileage"] },
-      { id: "scooty-3", name: "Suzuki Access", image: "/SuzukiAccess.png", price: "From ₹700/day", features: ["Powerful Engine", "Storage Space"] },
+      { id: "scooty-1", name: "Honda Activa", image: "/HondaActiva.jpg", price: "From ₹399/day", features: ["Smooth Ride", "Easy Start"] },
+      { id: "scooty-2", name: "TVS Jupiter", image: "/tvs-jupiter.jpg", price: "From ₹499/day", features: ["Comfortable Seat", "Good Mileage"] },
+      { id: "scooty-3", name: "Suzuki Access", image: "/SuzukiAccess.png", price: "From ₹399/day", features: ["Powerful Engine", "Storage Space"] },
     ],
   },
   {
@@ -65,7 +64,7 @@ const CATEGORIES = [
     description: "Eco-friendly transportation for urban exploration",
     thumbnail: "/electric-bicycle.jpg",
     models: [
-      { id: "elec-1", name: "Ather 450", image: "/electric-bicycle.jpg", price: "From ₹12,000/day", features: ["Long Range", "Fast Charge"] },
+      { id: "elec-1", name: "Ather 450", image: "/electric-bicycle.jpg", price: "From ₹3,00/day", features: ["Long Range", "Fast Charge"] },
     ],
   },
 ];
@@ -73,20 +72,17 @@ const CATEGORIES = [
 export function VehiclePage() {
   const [selectedType, setSelectedType] = useState("all");
 
-  // Auto-generate filters (All + category types)
   const filters = ["all", ...CATEGORIES.map((c) => c.type)];
 
   const activeCategory = selectedType === "all" ? null : CATEGORIES.find((c) => c.type === selectedType);
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Header */}
       <Topbar/>
       <div className="text-center">
         <h1 className="text-3xl font-semibold pt-20 pb-3">Our Vehicle Categories</h1>
       </div>
 
-      {/* Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-3 mt-8 mb-6">
         {filters.map((filter) => {
           const isActive = selectedType === filter;
@@ -109,7 +105,6 @@ export function VehiclePage() {
       </div>
 
       <div className="max-w-7xl mx-auto p-6">
-        {/* Show all categories (grid) */}
         {selectedType === "all" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {CATEGORIES.map((cat) => (
@@ -142,7 +137,6 @@ export function VehiclePage() {
           </div>
         )}
 
-        {/* Show models for selected category */}
         {activeCategory && (
           <div>
             <div className="flex items-center justify-between mb-6">
@@ -185,7 +179,7 @@ export function VehiclePage() {
                         View
                       </button>
                       <button className="px-3 py-2 rounded-md bg-black text-white text-sm">
-                        Book
+                        <Link to='/booking' state={{ vehicle: m }} >Book</Link>
                       </button>
                     </div>
                   </div>

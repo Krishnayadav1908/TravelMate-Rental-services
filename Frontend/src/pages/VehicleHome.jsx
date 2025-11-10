@@ -7,7 +7,7 @@ export default function VehicleHome() {
       title: "Economy Cars",
       description: "Perfect for city driving and budget-conscious travelers",
       tags: ["Fuel Efficient", "Easy Parking", "Automatic", "AC"],
-      price: "From $25/day",
+      price: "From ₹2,200/day",
       rating: 4.8,
     },
     {
@@ -15,7 +15,7 @@ export default function VehicleHome() {
       title: "Luxury Vehicles",
       description: "Premium comfort and style for special occasions",
       tags: ["Premium Interior", "Advanced Tech", "Leather Seats", "GPS"],
-      price: "From $85/day",
+      price: "From ₹12,000/day",
       rating: 4.9,
     },
     {
@@ -23,7 +23,7 @@ export default function VehicleHome() {
       title: "SUVs & Trucks",
       description: "Spacious vehicles for families and cargo needs",
       tags: ["7+ Seats", "Large Cargo", "4WD Available", "Safety Features"],
-      price: "From $55/day",
+      price: "From ₹4,500/day",
       rating: 4.7,
     },
     {
@@ -31,7 +31,7 @@ export default function VehicleHome() {
       title: "Electric Bikes",
       description: "Eco-friendly transportation for urban exploration",
       tags: ["Eco-Friendly", "Long Range", "Easy Ride", "City Perfect"],
-      price: "From $12/day",
+      price: "From ₹350/day",
       rating: 4.6,
     },
   ];
