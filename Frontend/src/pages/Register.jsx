@@ -12,7 +12,7 @@ export default function Registerr() {
     terms: false,
   });
 
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
   const [errorField, setErrorField] = useState("");
 
   const handleChange = (e) => {
@@ -21,7 +21,6 @@ export default function Registerr() {
       ...formData,
       [name]: type === "checkbox" ? checked : value,
     });
-
 
     if (name === errorField) {
       setError("");
@@ -110,9 +109,17 @@ export default function Registerr() {
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
 
-        <form onSubmit={handleSubmit} action="/do-register" method="post" className="space-y-5">
+        <form
+          onSubmit={handleSubmit}
+          action="/do-register"
+          method="post"
+          className="space-y-5"
+        >
           <div>
-            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="name"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Full Name
             </label>
             <input
@@ -121,14 +128,21 @@ export default function Registerr() {
               name="name"
               onChange={handleChange}
               className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorField === "name" ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
+                errorField === "name"
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-blue-500"
               }`}
             />
-            {errorField === "name" && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {errorField === "name" && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Email Address
             </label>
             <input
@@ -137,14 +151,21 @@ export default function Registerr() {
               name="email"
               onChange={handleChange}
               className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorField === "email" ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
+                errorField === "email"
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-blue-500"
               }`}
             />
-            {errorField === "email" && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {errorField === "email" && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="phone_no" className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="number"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Phone Number
             </label>
             <input
@@ -153,14 +174,21 @@ export default function Registerr() {
               name="number"
               onChange={handleChange}
               className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorField === "phone_no" ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
+                errorField === "number"
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-blue-500"
               }`}
             />
-            {errorField === "Phone_no" && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {errorField === "number" && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium mb-2"
+            >
               Password
             </label>
             <input
@@ -169,10 +197,14 @@ export default function Registerr() {
               name="password"
               onChange={handleChange}
               className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorField === "password" ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
+                errorField === "password"
+                  ? "border-red-500 focus:ring-red-500"
+                  : "focus:ring-blue-500"
               }`}
             />
-            {errorField === "password" && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {errorField === "password" && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
           </div>
 
           <div>
@@ -213,7 +245,9 @@ export default function Registerr() {
               </a>
             </label>
           </div>
-          {errorField === "terms" && <p className="text-red-500 text-sm mt-1">{error}</p>}
+          {errorField === "terms" && (
+            <p className="text-red-500 text-sm mt-1">{error}</p>
+          )}
 
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -227,12 +261,14 @@ export default function Registerr() {
 
         <p className="mt-6 text-center text-gray-600 text-sm">
           Already have an account?{" "}
-          <Link to="/signin" className="text-blue-500 hover:underline font-medium">
+          <Link
+            to="/signin"
+            className="text-blue-500 hover:underline font-medium"
+          >
             Sign in
           </Link>
         </p>
       </motion.div>
     </div>
-    
   );
 }
