@@ -22,8 +22,9 @@ export function Book() {
   const [dropoffDate, setDropoffDate] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const [paymentMethod, setPaymentMethod] = useState("upi"); 
+  const [paymentMethod, setPaymentMethod] = useState("upi");
   const [upiId, setUpiId] = useState("");
 
   const [processing, setProcessing] = useState(false);
@@ -39,8 +40,32 @@ export function Book() {
     }
   }
 
+  function validateForm() {
+    const newErrors = {};
+    if (!fullName.trim()) newErrors.fullName = "Full name is required.";
+    if (!email.trim()) newErrors.email = "Email is required.";
+    else if (!/^\S+@\S+\.\S+$/.test(email))
+      newErrors.email = "Enter a valid email.";
+    if (!phone.trim()) newErrors.phone = "Phone number is required.";
+    else if (!/^\d{10}$/.test(phone))
+      newErrors.phone = "Enter a valid 10-digit phone number.";
+    if (!pickupDate) newErrors.pickupDate = "Pick-up date is required.";
+    if (!dropoffDate) newErrors.dropoffDate = "Drop-off date is required.";
+    if (pickupDate && dropoffDate && pickupDate > dropoffDate)
+      newErrors.dropoffDate = "Drop-off date must be after pick-up date.";
+    if (!pickupLocation.trim())
+      newErrors.pickupLocation = "Pick-up location is required.";
+    if (!dropoffLocation.trim())
+      newErrors.dropoffLocation = "Drop-off location is required.";
+    if (paymentMethod === "upi" && !upiId.trim())
+      newErrors.upiId = "UPI ID is required.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    if (!validateForm()) return;
 
     const paymentDetails =
       paymentMethod === "upi"
@@ -87,7 +112,8 @@ export function Book() {
             <div>
               <h3 className="font-semibold">{confirmation.vehicleName}</h3>
               <div className="text-sm text-gray-500">
-                {confirmation.pickup.date || "—"} → {confirmation.dropoff.date || "—"}
+                {confirmation.pickup.date || "—"} →{" "}
+                {confirmation.dropoff.date || "—"}
               </div>
             </div>
             <div className="text-right">
@@ -100,20 +126,24 @@ export function Book() {
 
           <div className="text-sm text-gray-700 space-y-1">
             <div>
-              <strong>Renter:</strong> {confirmation.customer.fullName} ({confirmation.customer.email})
+              <strong>Renter:</strong> {confirmation.customer.fullName} (
+              {confirmation.customer.email})
             </div>
             <div>
               <strong>Phone:</strong> {confirmation.customer.phone}
             </div>
             <div>
-              <strong>Pickup:</strong> {confirmation.pickup.date} — {confirmation.pickup.location}
+              <strong>Pickup:</strong> {confirmation.pickup.date} —{" "}
+              {confirmation.pickup.location}
             </div>
             <div>
-              <strong>Dropoff:</strong> {confirmation.dropoff.date} — {confirmation.dropoff.location}
+              <strong>Dropoff:</strong> {confirmation.dropoff.date} —{" "}
+              {confirmation.dropoff.location}
             </div>
 
             <div className="mt-2">
-              <strong>Payment:</strong> {confirmation.paymentMethod.toUpperCase()}
+              <strong>Payment:</strong>{" "}
+              {confirmation.paymentMethod.toUpperCase()}
             </div>
             {confirmation.paymentMethod === "upi" && (
               <div className="text-xs text-gray-600">
@@ -121,7 +151,9 @@ export function Book() {
               </div>
             )}
             {confirmation.paymentMethod === "cash" && (
-              <div className="text-xs text-gray-600">Pay in cash during pickup</div>
+              <div className="text-xs text-gray-600">
+                Pay in cash during pickup
+              </div>
             )}
           </div>
         </div>
@@ -163,9 +195,12 @@ export function Book() {
             <input
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="mt-1 p-2 border rounded w-full"
+              className={`mt-1 p-2 border rounded w-full ${errors.fullName ? "border-red-500" : ""}`}
               placeholder="Your full name"
             />
+            {errors.fullName && (
+              <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>
+            )}
           </div>
 
           <div>
@@ -173,9 +208,12 @@ export function Book() {
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 border rounded w-full"
+              className={`mt-1 p-2 border rounded w-full ${errors.email ? "border-red-500" : ""}`}
               placeholder="you@example.com"
             />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div>
@@ -183,9 +221,12 @@ export function Book() {
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="mt-1 p-2 border rounded w-full"
-              placeholder="+91 98765 43210"
+              className={`mt-1 p-2 border rounded w-full ${errors.phone ? "border-red-500" : ""}`}
+              placeholder="10-digit phone number"
             />
+            {errors.phone && (
+              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -195,8 +236,11 @@ export function Book() {
                 value={pickupDate}
                 onChange={(e) => setPickupDate(e.target.value)}
                 type="date"
-                className="mt-1 p-2 border rounded w-full"
+                className={`mt-1 p-2 border rounded w-full ${errors.pickupDate ? "border-red-500" : ""}`}
               />
+              {errors.pickupDate && (
+                <p className="text-red-500 text-xs mt-1">{errors.pickupDate}</p>
+              )}
             </div>
             <div>
               <label className="text-sm font-medium">Drop-off date</label>
@@ -204,8 +248,13 @@ export function Book() {
                 value={dropoffDate}
                 onChange={(e) => setDropoffDate(e.target.value)}
                 type="date"
-                className="mt-1 p-2 border rounded w-full"
+                className={`mt-1 p-2 border rounded w-full ${errors.dropoffDate ? "border-red-500" : ""}`}
               />
+              {errors.dropoffDate && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.dropoffDate}
+                </p>
+              )}
             </div>
           </div>
 
@@ -214,9 +263,14 @@ export function Book() {
             <input
               value={pickupLocation}
               onChange={(e) => setPickupLocation(e.target.value)}
-              className="mt-1 p-2 border rounded w-full"
+              className={`mt-1 p-2 border rounded w-full ${errors.pickupLocation ? "border-red-500" : ""}`}
               placeholder="City, landmark or address"
             />
+            {errors.pickupLocation && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.pickupLocation}
+              </p>
+            )}
           </div>
 
           <div>
@@ -224,9 +278,14 @@ export function Book() {
             <input
               value={dropoffLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
-              className="mt-1 p-2 border rounded w-full"
+              className={`mt-1 p-2 border rounded w-full ${errors.dropoffLocation ? "border-red-500" : ""}`}
               placeholder="City, landmark or address"
             />
+            {errors.dropoffLocation && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.dropoffLocation}
+              </p>
+            )}
           </div>
 
           {/* Payment options */}
@@ -274,9 +333,12 @@ export function Book() {
               <input
                 value={upiId}
                 onChange={(e) => setUpiId(e.target.value)}
-                className="mt-1 p-2 border rounded w-full"
+                className={`mt-1 p-2 border rounded w-full ${errors.upiId ? "border-red-500" : ""}`}
                 placeholder="yourid@upi"
               />
+              {errors.upiId && (
+                <p className="text-red-500 text-xs mt-1">{errors.upiId}</p>
+              )}
               <div className="text-xs text-gray-500 mt-2">
                 Mock payment — this will mark booking as "paid" locally.
               </div>
